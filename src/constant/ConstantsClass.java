@@ -10,8 +10,6 @@ public class ConstantsClass {
 
     public static final int TWELVE = 12;
 
-    public static final int THIRTY = 30;
-
     public static final int THIRTYONE = 31;
 
 
