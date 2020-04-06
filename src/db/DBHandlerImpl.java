@@ -214,7 +214,7 @@ public class DBHandlerImpl extends Utility implements DBHandler{
                 PurchaseOrder purchaseOrder = new PurchaseOrder();
                 purchaseOrder.setProductId(resultSet.getInt("productid"));
                 purchaseOrder.setSupplierId(resultSet.getInt("supplierid"));
-                purchaseOrder.setUnitBuyPrice(resultSet.getInt("unitBuyPrice"));
+                purchaseOrder.setUnitBuyPrice(resultSet.getDouble("unitBuyPrice"));
                 purchaseOrder.setPurchaseDate(date);
 
                 int purchaseId = Integer.valueOf(generatePurchaseId(purchaseOrder));

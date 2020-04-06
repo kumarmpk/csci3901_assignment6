@@ -116,8 +116,8 @@ public class Queries {
         String query = null;
 
         query = "update purchases pur, products prod set prod.unitsonorder = prod.unitsonorder + pur.quantity "
-                .concat(" where pur.productid = prod.productid and pur.supplierid = prod.supplierid")
-                .concat(" and date(pur.purchasedate) = date('").concat(date).concat("');");
+                .concat(" where pur.productid = prod.productid and pur.supplierid = prod.supplierid ")
+                .concat(" and pur.receivedate is null and date(pur.purchasedate) = date('").concat(date).concat("');");
 
         return query;
     }
