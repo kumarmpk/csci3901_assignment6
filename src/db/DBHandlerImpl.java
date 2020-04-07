@@ -242,18 +242,8 @@ public class DBHandlerImpl extends Utility implements DBHandler{
 
                 purchaseOrder.setPurchaseId(purchaseId);
 
-                //direct reorder call, setting the reorder level as ordering quantity
-                if(purOrder == null) {
-                    purchaseOrder.setQuantity(resultSet.getInt("quantity"));
-                }
-                //ship order flow reorder call, setting the quantity as reorder level + the gap in inventory to ship
-                else if(purOrder.getProductId() == purchaseOrder.getProductId()){
-                    purchaseOrder.setQuantity(resultSet.getInt("quantity") - purOrder.getQuantity());
-                }
-                //direct reorder call, setting the reorder level as ordering quantity
-                else {
-                    purchaseOrder.setQuantity(resultSet.getInt("quantity"));
-                }
+                //setting the reorder level as ordering quantity
+                purchaseOrder.setQuantity(resultSet.getInt("quantity"));
 
                 supplierList.add(purchaseOrder.getSupplierId());
                 purchaseOrderList.add(purchaseOrder);
