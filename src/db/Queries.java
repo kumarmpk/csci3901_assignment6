@@ -59,7 +59,8 @@ public class Queries {
         query = "select prod.productid, prod.supplierid, (prod.unitprice * 0.85) as unitBuyPrice, prod.productname, "
                 .concat(" case when prod.reorderlevel = '0' then '5' else prod.reorderlevel ")
                 .concat(" end as quantity from products prod where prod.discontinued = 0 ")
-                .concat(" and prod.unitsinstock+prod.unitsonorder <= prod.reorderlevel; ");
+                .concat(" and ((prod.unitsinstock+prod.unitsonorder <= prod.reorderlevel and prod.reorderlevel > 0) ")
+                .concat(" or (prod.unitsinstock+prod.unitsonorder <= 5 and prod.reorderlevel = 0)); ");
 
         return query;
     }
@@ -75,7 +76,8 @@ public class Queries {
                 .concat(" case when prod.reorderlevel = '0' then '5' else prod.reorderlevel ")
                 .concat(" end as quantity from products prod where prod.discontinued = 0 ")
                 .concat(" and prod.supplierid = ").concat(String.valueOf(purchaseOrder.getSupplierId()))
-                .concat(" and (prod.unitsinstock+prod.unitsonorder <= prod.reorderlevel or ")
+                .concat(" and ((prod.unitsinstock+prod.unitsonorder <= prod.reorderlevel and prod.reorderlevel > 0) or ")
+                .concat(" (prod.unitsinstock+prod.unitsonorder <= 5 and prod.reorderlevel = 0) or ")
                 .concat(" (prod.unitsonorder = 0 and prod.productid = ")
                 .concat(String.valueOf(purchaseOrder.getProductId())).concat("));");
 
