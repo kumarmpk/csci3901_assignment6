@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 //main class of the program
 
-public class MainClass {
+public class MainUI {
 
     //main method starting point of the program
 
